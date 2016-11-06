@@ -11,7 +11,6 @@ public class MachineManager {
     public static void init() {
         World world = Bukkit.getWorld("world");
         Collection<ArmorStand> armorStands = world.getEntitiesByClass(ArmorStand.class);
-        Bukkit.broadcastMessage("ArmorStands - " + armorStands.size());
         for (ArmorStand as : armorStands) {
             switch(as.getCustomName()) {
                 case "Teleporter - Click me to configure":

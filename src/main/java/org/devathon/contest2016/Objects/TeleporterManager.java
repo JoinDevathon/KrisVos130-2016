@@ -32,8 +32,6 @@ public class TeleporterManager {
 
     public static Teleporter getTeleporter(Block block) {
         for (Teleporter teleporter : teleporters) {
-            //Bukkit.broadcastMessage(block.getX() + "-" + block.getY() + "-" + block.getZ());
-            //Bukkit.broadcastMessage(teleporter.getCore().getX() + "-" + teleporter.getCore().getY() + "-" + teleporter.getCore().getZ());
             if (block.equals(teleporter.getCore())) {
                 return teleporter;
             }

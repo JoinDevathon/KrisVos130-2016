@@ -1,6 +1,7 @@
 package org.devathon.contest2016.Commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,6 +23,7 @@ public class AddTeleporterCommand implements CommandExecutor {
         structure.buildStructure(((Player) sender).getLocation().add(2, 0, 0), Direction.NORTH);
         ArmorStand as = Label.addLabel("Teleporter - Click me to configure", ((Player) sender).getLocation().getBlock().getRelative(2, 0, 0));
         TeleporterManager.addTeleporter(as, false);
+        sender.sendMessage(ChatColor.AQUA + "Added teleporter.");
         return false;
     }
 }

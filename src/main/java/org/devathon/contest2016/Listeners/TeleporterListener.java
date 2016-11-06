@@ -1,6 +1,7 @@
 package org.devathon.contest2016.Listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -24,10 +25,9 @@ public class TeleporterListener implements Listener {
     public void onClick(PlayerInteractEvent e) {
         if (e.getClickedBlock() != null && e.getHand() == EquipmentSlot.HAND) {
             Teleporter teleporter = TeleporterManager.getTeleporter(e.getClickedBlock());
-            Bukkit.broadcastMessage(teleporter + "");
             if (teleporter != null && teleporter.getFrequency() == 0) {
                 Main.teleporterFrequencies.put(e.getPlayer().getUniqueId(), teleporter);
-                e.getPlayer().sendMessage("Please enter the frequency you would like this to use in chat.");
+                e.getPlayer().sendMessage(ChatColor.AQUA + "Please enter the frequency you would like this to use in chat.");
             }
         }
     }
@@ -46,14 +46,13 @@ public class TeleporterListener implements Listener {
                     @Override
                     public void run() {
                         if (!teleporter.getCore().equals(e.getPlayer().getPlayer().getLocation().getBlock().getRelative(0, -1, 0))) {
-                            e.getPlayer().sendMessage("Teleportation cancelled.");
+                            e.getPlayer().sendMessage(ChatColor.AQUA + "Teleportation cancelled.");
                             int id = teleporting.get(e.getPlayer().getUniqueId());
                             teleporting.remove(e.getPlayer().getUniqueId());
                             Bukkit.getScheduler().cancelTask(id);
                         } else {
                             state++;
                             String message = "";
-                            e.getPlayer().getWorld().playEffect(teleporter.getCore().getLocation().add(0, 1, 0), Effect.COLOURED_DUST, 1);
                             switch(state) {
                                 case 1:
                                     message = "Initiating MCTeleport v1.1";
@@ -62,10 +61,10 @@ public class TeleporterListener implements Listener {
                                     message = "Loading module 'teleporter'";
                                     break;
                                 case 3:
-                                    message = "Loading module 'quantum'";
+                                    message = "Loading module 'cleanup'";
                                     break;
                                 case 4:
-                                    message = "Loading module 'cleanup'";
+                                    message = "Loading module 'quantum'";
                                     break;
                                 case 5:
                                     message = "Added cleanup scheduler.";
@@ -86,7 +85,7 @@ public class TeleporterListener implements Listener {
                                         state = 9;
                                     }
                             }
-                            e.getPlayer().sendMessage(message);
+                            e.getPlayer().sendMessage(ChatColor.AQUA + message);
                             if (state == 9) {
                                 e.getPlayer().teleport(target.getCore().getLocation().add(0.5, 1, 0.5));
                                 int id = teleporting.get(e.getPlayer().getUniqueId());
@@ -121,17 +120,17 @@ public class TeleporterListener implements Listener {
                     }
                     if (freqsFound < 2) {
                         teleporter.setFrequency(frequency);
-                        e.getPlayer().sendMessage("Set teleporter frequency to " + frequency);
+                        e.getPlayer().sendMessage(ChatColor.AQUA + "Set teleporter frequency to " + frequency);
                         Main.teleporterFrequencies.remove(e.getPlayer().getUniqueId());
                     } else {
-                        e.getPlayer().sendMessage("There are already two teleporters with that frequency.");
+                        e.getPlayer().sendMessage(ChatColor.AQUA + "There are already two teleporters with that frequency.");
                     }
                 } else {
-                    e.getPlayer().sendMessage("Please enter a frequency that is higher than 0.");
+                    e.getPlayer().sendMessage(ChatColor.AQUA + "Please enter a frequency that is higher than 0.");
                 }
                 e.setCancelled(true);
             } catch(NumberFormatException ex) {
-                e.getPlayer().sendMessage("Invalid frequency. Please try again.");
+                e.getPlayer().sendMessage(ChatColor.AQUA + "Invalid frequency. Please try again.");
             }
         }
     }
