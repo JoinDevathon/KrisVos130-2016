@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Label {
 
-    public static void addLabel(String text, Block block) {
-        ArmorStand as = (ArmorStand) block.getWorld().spawnEntity(block.getLocation(), EntityType.ARMOR_STAND);
+    public static ArmorStand addLabel(String text, Block block) {
+        ArmorStand as = (ArmorStand) block.getWorld().spawnEntity(block.getLocation().add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
         as.setVisible(false);
         as.setCustomNameVisible(true);
         as.setCustomName(text);
@@ -18,7 +18,7 @@ public class Label {
         as.setInvulnerable(true);
         as.setGravity(false);
         as.setMetadata("type", new LabelTypeMetadata("blank_antenna"));
-        as.teleport(block.getLocation());
+        return as;
     }
 
     public static int getMetadataInt(ArmorStand as, String metadata) {

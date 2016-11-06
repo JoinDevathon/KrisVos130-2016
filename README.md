@@ -1,3 +1,7 @@
+# Instructions
+This plugin is about teleportation. That is why I have added a teleportation machine! To get started, you can place a teleporter by doing `/addtp`.
+Once your teleporter is placed, you can click on the center block to set the frequency! You need to have two teleporters with the same frequency for this to work. After you have set up two teleporters with the same frequency, you can stand on the center block to initiate the teleportation.
+
 # Devathon Project
 This is the base layout for your Devathon Project. It includes several scripts to make running incredibly easy on Windows, Mac, and Linux.
 

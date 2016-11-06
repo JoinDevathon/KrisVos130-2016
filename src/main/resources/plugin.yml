@@ -4,4 +4,4 @@ version: 1.0.0
 author: KrisVos130
 main: org.devathon.contest2016.Main
 commands:
-  test:
+  addtp:

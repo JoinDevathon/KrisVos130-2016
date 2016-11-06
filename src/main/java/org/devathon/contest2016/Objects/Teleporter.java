@@ -4,13 +4,13 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.devathon.contest2016.Entities.LabelFrequencyMetadata;
 
-public class Antenna {
+public class Teleporter {
 
     private Block core;
     private double frequency;
     private ArmorStand label;
 
-    public Antenna(Block core, double frequency, ArmorStand label) {
+    public Teleporter(Block core, double frequency, ArmorStand label) {
         this.core = core;
         this.frequency = frequency;
         this.label = label;
@@ -31,6 +31,6 @@ public class Antenna {
     public void setFrequency(double frequency) {
         this.frequency = frequency;
         label.setMetadata("frequency", new LabelFrequencyMetadata(frequency));
-        label.setCustomName("Antenna - Frequency " + frequency);
+        label.setCustomName("Teleporter - Frequency " + frequency);
     }
 }
