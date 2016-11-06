@@ -11,13 +11,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.metadata.MetadataValue;
 import org.devathon.contest2016.Entities.Label;
 import org.devathon.contest2016.Main;
+import org.devathon.contest2016.Objects.Antenna;
+import org.devathon.contest2016.Objects.AntennaManager;
 import org.devathon.contest2016.Structures.Direction;
 import org.devathon.contest2016.Structures.Structure;
-import org.devathon.contest2016.Structures.StructureBlock;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class TestCommand implements CommandExecutor {
 
@@ -29,16 +26,10 @@ public class TestCommand implements CommandExecutor {
         structure.buildStructure(((Player) sender).getLocation(), Direction.valueOf(args[0]));
         Label.addLabel("Antenna - Click me to configure", ((Player) sender).getLocation().getBlock());
 
-        Collection<Entity> entities = p.getWorld().getNearbyEntities(p.getLocation(), 10, 10, 10);
-        for (Entity entity : entities) {
-            if (entity instanceof ArmorStand) {
-                ArmorStand as;
-                List<MetadataValue> values = entity.getMetadata("type");
-                for (MetadataValue val : values) {
-                    Bukkit.broadcastMessage(val.asString());
-                }
-            }
+        for (Antenna antenna : AntennaManager.antennas) {
+            Bukkit.broadcastMessage("Antenna: " + antenna.getFrequency());
         }
+        Bukkit.broadcastMessage(AntennaManager.antennas.size() + " - antennas");
 
         return false;
     }
